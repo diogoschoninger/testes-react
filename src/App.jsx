@@ -1,30 +1,16 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { Home } from "./pages/Home";
+import { Profile } from "./pages/Profile";
 
 function App() {
-  const [repos, setRepos] = useState([]);
-  async function getRepos() {
-    await fetch("https://api.github.com/users/diogoschoninger/repos")
-      .then(response => response.json())
-      .then(responsejson => {
-        setRepos(responsejson);
-      });
-  }
-
-  getRepos();
-
-  return (
-    <div>
-      <h1>Repositórios</h1>
-      <ul>
-        {repos.map(repos => {
-          return (
-            <li key={repos.id}>
-              <a href={repos.html_url}>{repos.name}</a>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+  return(
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/user/:user" element={<Profile/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
