@@ -25,7 +25,7 @@ export function Home() {
         if (response.message === "Not Found") {
           setResult({
             status: "ERRO",
-            body: <span>Não existe nenhum usuário com esse login!</span>
+            body: <Title2>Não existe nenhum usuário com esse login!</Title2>
           })
         } else {
           setResult({

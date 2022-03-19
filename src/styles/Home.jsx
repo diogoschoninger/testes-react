@@ -13,6 +13,7 @@ export const Title1 = styled.h1`
 `;
 
 export const Input = styled.input`
+margin-top: 16px;
   padding: 5px 12px;
   font-size: 14px;
   line-height: 20px;
@@ -46,6 +47,7 @@ export const Button = styled.button`
 `;
 
 export const Title2 = styled.h2`
+  margin-top: 16px;
   font-size: 26px;
   font-weight: 600;
   color: #adbac7;
