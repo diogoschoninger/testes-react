@@ -57,9 +57,9 @@ export function Profile() {
         <div>
           <DivBio>{userData.bio}</DivBio>
           <DivFollowers>
-            <a style={{color: '#768390'}}><strong style={{color: '#adbac7'}}>{userData.followers}</strong> followers</a>
+            <span style={{color: '#768390'}}><strong style={{color: '#adbac7'}}>{userData.followers}</strong> followers</span>
             · 
-            <a style={{color: '#768390'}}><strong style={{color: '#adbac7'}}>{userData.following}</strong> following</a>
+            <span style={{color: '#768390'}}><strong style={{color: '#adbac7'}}>{userData.following}</strong> following</span>
           </DivFollowers>
           <DivLocation>{userData.location}</DivLocation>
         </div>
