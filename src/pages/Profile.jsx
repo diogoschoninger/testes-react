@@ -16,7 +16,8 @@ import {
   LinkReposName,
   ReposDescription,
   ReposDetail
-} from "../styles/styles";
+} from "../styles/Profile";
+import "../styles/Profile.css";
 
 export function Profile() {
   const user = useParams().user;
@@ -56,9 +57,9 @@ export function Profile() {
         <div>
           <DivBio>{userData.bio}</DivBio>
           <DivFollowers>
-            <a href=""><strong>{userData.followers}</strong> followers</a>
+            <a style={{color: '#768390'}}><strong style={{color: '#adbac7'}}>{userData.followers}</strong> followers</a>
             · 
-            <a href=""><strong>{userData.following}</strong> following</a>
+            <a style={{color: '#768390'}}><strong style={{color: '#adbac7'}}>{userData.following}</strong> following</a>
           </DivFollowers>
           <DivLocation>{userData.location}</DivLocation>
         </div>
@@ -67,7 +68,7 @@ export function Profile() {
         <Title1>Repositórios</Title1>
         {Object.values(repos).map(repos => (
           <Repo key={repos.id}>
-            <LinkReposName href={repos.html_url}>{repos.name}</LinkReposName>
+            <LinkReposName href={repos.html_url} target="blank">{repos.name}</LinkReposName>
             <ReposDescription>{repos.description}</ReposDescription>
             <ReposDetail>
               {repos.language}

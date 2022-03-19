@@ -1,5 +1,14 @@
 import { useState } from "react";
 
+import {
+  Container,
+  Title1,
+  Input,
+  Button,
+  Title2,
+  LinkUser
+} from "../styles/Home";
+
 export function Home() {
   const [user, setUser] = useState("");
   const [result, setResult] = useState({
@@ -23,8 +32,8 @@ export function Home() {
             status: "OK",
             body:
               <div>
-                <h2>Usuário encontrado</h2>
-                <a href={"/user/" + response.login}>{response.login}</a>
+                <Title2>Usuário encontrado:</Title2>
+                <LinkUser href={"/user/" + response.login}>{response.login}</LinkUser>
               </div>
           })
         }
@@ -32,15 +41,15 @@ export function Home() {
   }
 
   return (
-    <div>
+    <Container>
       <div>
-        <h1>Pesquise um usuário do GitHub</h1>
+        <Title1 style={{color: '#adbac7', fontWeight: 600}}>Consulta GitHub</Title1>
         <form onSubmit={searchUser}>
-          <input type="text" onChange={e => setUser(e.target.value)}/>
-          <button type="submit">Buscar</button>
+          <Input type="text" placeholder="Busque por um usuário..." onChange={e => setUser(e.target.value)}/>
+          <Button type="submit">Buscar</Button>
         </form>
       </div>
       {result.status ? result.body : ""}
-    </div>
+    </Container>
   );
 }
