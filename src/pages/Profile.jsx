@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import {
   Container,
@@ -24,27 +24,25 @@ export function Profile() {
   const [userData, setUserData] = useState({});
   const [repos, setRepos] = useState({});
 
-  const getUser = async () => {
+  const getUser = useCallback( async () => {
     await fetch("https://api.github.com/users/" + user)
       .then(result => result.json())
       .then(result => {
-        if (result.message === "Not Found") {
-          window.location.href = "http://localhost:3000";
-        }
+        if (result.message === "Not Found") window.location.href = "http://localhost:3000";
         setUserData(result)
       });
-  }
+  }, [user]);
 
-  const getRepos = async () => {
+  const getRepos = useCallback(async () => {
     await fetch("https://api.github.com/users/" + user + "/repos")
       .then(result => result.json())
       .then(result => setRepos(result));
-  }
+  }, [user]);
 
   useEffect(() => {
     getUser();
     getRepos();
-  }, []);
+  }, [getUser, getRepos]);
 
   return(
     <Container>
