@@ -24,12 +24,12 @@ export function Profile() {
   const [userData, setUserData] = useState({});
   const [repos, setRepos] = useState({});
 
-  const getUser = useCallback( async () => {
+  const getUser = useCallback(async () => {
     await fetch("https://api.github.com/users/" + user)
       .then(result => result.json())
       .then(result => {
         if (result.message === "Not Found") window.location.href = "http://localhost:3000";
-        setUserData(result)
+        setUserData(result);
       });
   }, [user]);
 

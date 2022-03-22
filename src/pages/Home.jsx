@@ -23,12 +23,12 @@ export function Home() {
       .then(response => {
         if (response.message === "Not Found") {
           setResult({
-            status: "ERRO",
+            status: "not-found",
             body: <Title2>Não existe nenhum usuário com esse login!</Title2>
           })
         } else {
           setResult({
-            status: "OK",
+            status: "ok",
             body:
               <div>
                 <Title2>Usuário encontrado:</Title2>
@@ -36,19 +36,23 @@ export function Home() {
               </div>
           })
         }
+      })
+      .catch(() => {
+        setResult({
+          status: "erro",
+          body: <Title2>Houve um erro com a busca, tente novamente</Title2>
+        })
       });
   }
 
   return (
     <Container>
-      <div>
-        <Title1 style={{color: '#adbac7', fontWeight: 600}}>Consulta GitHub</Title1>
-        <form onSubmit={searchUser}>
-          <Input type="text" placeholder="Busque por um usuário..." onChange={e => setUser(e.target.value)}/>
-          <Button type="submit">Buscar</Button>
-        </form>
-      </div>
-      {result.status ? result.body : ""}
+      <Title1 style={{color: '#adbac7', fontWeight: 600}}>Consulta GitHub</Title1>
+      <form onSubmit={searchUser}>
+        <Input type="text" placeholder="Busque por um usuário..." onChange={e => setUser(e.target.value)}/>
+        <Button type="submit">Buscar</Button>
+      </form>
+      {result.status !== "erro" ? result.body : null}
     </Container>
   );
 }
